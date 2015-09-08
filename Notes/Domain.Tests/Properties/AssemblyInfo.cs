@@ -4,8 +4,8 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Domain")]
-[assembly: AssemblyProduct("Domain")]
+[assembly: AssemblyTitle("Domain.Tests")]
+[assembly: AssemblyProduct("Domain.Tests")]
 [assembly: AssemblyCopyright("Copyright © Sharon Russell 2015")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
@@ -14,7 +14,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("a515fa09-f2b7-4469-8619-9e316bd7e742")]
+[assembly: Guid("06acdad5-74be-4710-92be-70db963e4adc")]
 
 // Version information for an assembly consists of the following four values:
 //
