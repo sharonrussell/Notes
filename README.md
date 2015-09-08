@@ -1,0 +1,2 @@
+# Notes
+Simple notes project
