@@ -11,7 +11,7 @@ namespace Domain.Tests
         {
             Note note = new Note("some text");
 
-            Assert.That(note.GetText(), Is.EqualTo("some text"));
+            Assert.That(note.Text, Is.EqualTo("some text"));
         }
     }
 }
