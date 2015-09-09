@@ -9,7 +9,7 @@ namespace Data.NHibernate
         {
             Map(n => n.Text);
 
-            Id(n => n.Id);
+            Id(n => n.Id).GeneratedBy.Increment();
         }
     }
 }

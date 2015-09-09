@@ -11,7 +11,7 @@ namespace NotesConsole
             {
                 using (var transaction = session.BeginTransaction())
                 {
-                    var note = new Note {Text = "some text", Id = 1};
+                    var note = new Note {Text = "some text"};
 
                     session.Save(note);
                     transaction.Commit();
@@ -20,6 +20,7 @@ namespace NotesConsole
                 using (var transaction = session.BeginTransaction())
                 {
                     var note = session.Get<Note>(1);
+                    transaction.Commit();
                 }
             }
         }
