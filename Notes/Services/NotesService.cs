@@ -1,6 +1,37 @@
-﻿namespace Services
+﻿using Data;
+using Notes;
+
+namespace Services
 {
     public class NotesService : INotesService
     {
+        private readonly INotesRepository _notesRepository;
+
+        public NotesService(INotesRepository notesRepository)
+        {
+            _notesRepository = notesRepository;
+        }
+
+        public NotesService()
+        {
+        }
+
+        public void AddNote(string text)
+        {
+            _notesRepository.AddNote(text);
+        }
+
+        public NoteDto GetNote(int id)
+        {
+            Note note = _notesRepository.GetNote(id);
+
+            NoteDto noteDto = new NoteDto
+            {
+                Text = note.Text,
+                Id = note.Id
+            };
+
+            return noteDto;
+        }
     }
 }
