@@ -9,7 +9,7 @@ namespace Domain.Tests
         [Test]
         public void When_CreatingNote_Should_SetTitle()
         {
-            Note note = new Note("some text");
+            Note note = new Note {Text = "some text"};
 
             Assert.That(note.Text, Is.EqualTo("some text"));
         }
