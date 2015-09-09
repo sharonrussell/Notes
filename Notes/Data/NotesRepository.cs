@@ -18,7 +18,7 @@ namespace Data
             {
                 using (var transaction = session.BeginTransaction())
                 {
-                    Note note = new Note {Text = text};
+                    var note = new Note {Text = text};
                     session.Save(note);
 
                     transaction.Commit();
