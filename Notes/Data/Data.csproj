@@ -36,6 +36,9 @@
     <Reference Include="Iesi.Collections">
       <HintPath>..\packages\Iesi.Collections.4.0.0.4000\lib\net40\Iesi.Collections.dll</HintPath>
     </Reference>
+    <Reference Include="Moq">
+      <HintPath>..\packages\Moq.4.2.1507.0118\lib\net40\Moq.dll</HintPath>
+    </Reference>
     <Reference Include="NHibernate">
       <HintPath>..\packages\NHibernate.4.0.0.4000\lib\net40\NHibernate.dll</HintPath>
     </Reference>
@@ -48,8 +51,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="INotesRepository.cs" />
+    <Compile Include="NHibernate\INHibernateHelper.cs" />
     <Compile Include="NHibernate\NHibernateHelper.cs" />
     <Compile Include="NHibernate\NoteMap.cs" />
+    <Compile Include="NHibernate\TestNHibernateHelper.cs" />
+    <Compile Include="NotesRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

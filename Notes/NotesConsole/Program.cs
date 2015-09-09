@@ -7,7 +7,9 @@ namespace NotesConsole
     {
         public static void Main(string[] args)
         {
-            using (var session = NHibernateHelper.OpenSession())
+            NHibernateHelper nHibernateHelper = new NHibernateHelper();
+
+            using (var session = nHibernateHelper.OpenSession())
             {
                 using (var transaction = session.BeginTransaction())
                 {
