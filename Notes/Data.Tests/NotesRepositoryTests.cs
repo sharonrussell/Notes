@@ -1,4 +1,5 @@
-﻿using Data.NHibernate;
+﻿using System;
+using Data.NHibernate;
 using Notes;
 using NUnit.Framework;
 
