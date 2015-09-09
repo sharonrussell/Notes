@@ -1,4 +1,5 @@
 ﻿using Data;
+using Data.NHibernate;
 using Ninject.Modules;
 
 namespace Services
@@ -9,6 +10,7 @@ namespace Services
         {
             Bind<INotesRepository>().To<NotesRepository>();
             Bind<INotesService>().To<NotesService>();
+            Bind<INHibernateHelper>().To<NHibernateHelper>();
         }
     }
 }
