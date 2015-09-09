@@ -38,5 +38,30 @@ namespace Data.Tests
             Assert.That(note, Is.Not.Null);
             Assert.That(note.Text, Is.EqualTo("test note"));
         }
+
+        [Test]
+        public void When_GettingNote_Should_SaveToDB()
+        {
+            Note note;
+            
+            using (var session = _nHibernateHelper.OpenSession())
+            {
+                using (var transaction = session.BeginTransaction())
+                {
+                    note = new Note
+                    {
+                        Text = "test note"
+                    };
+
+                    session.Save(note);
+                    transaction.Commit();
+                }
+            }
+
+            note = _notesRepository.GetNote(note.Id);
+
+            Assert.That(note, Is.Not.Null);
+            Assert.That(note.Text, Is.EqualTo("test note"));
+        }
     }
 }

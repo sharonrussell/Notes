@@ -25,5 +25,19 @@ namespace Data
                 }
             }
         }
+
+        public Note GetNote(int id)
+        {
+            using (var session = _nHibernateHelper.OpenSession())
+            {
+                using (var transaction = session.BeginTransaction())
+                {
+                    var note = session.Get<Note>(id);
+
+                    transaction.Commit();
+                    return note;
+                }
+            }
+        }
     }
 }
