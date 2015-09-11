@@ -1,5 +1,6 @@
-﻿using Data;
-using Notes;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Data;
 
 namespace Services
 {
@@ -23,15 +24,28 @@ namespace Services
 
         public NoteDto GetNote(int id)
         {
-            Note note = _notesRepository.GetNote(id);
+            var note = _notesRepository.GetNote(id);
 
-            NoteDto noteDto = new NoteDto
+            var noteDto = new NoteDto
             {
                 Text = note.Text,
                 Id = note.Id
             };
 
             return noteDto;
+        }
+
+        public IEnumerable<NoteDto> GetAllNotes()
+        {
+            var notes = _notesRepository.GetAllNotes();
+
+            var noteDtos = notes.Select(note => new NoteDto
+            {
+                Text = note.Text,
+                Id = note.Id
+            }).ToList();
+
+            return noteDtos;
         }
     }
 }

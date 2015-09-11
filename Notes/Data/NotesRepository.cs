@@ -1,4 +1,7 @@
-﻿using Data.NHibernate;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Data.NHibernate;
+using NHibernate.Linq;
 using Notes;
 
 namespace Data
@@ -36,6 +39,20 @@ namespace Data
 
                     transaction.Commit();
                     return note;
+                }
+            }
+        }
+
+        public IEnumerable<Note> GetAllNotes()
+        {
+            using (var session = _nHibernateHelper.OpenSession())
+            {
+                using (var transaction = session.BeginTransaction())
+                {
+                    var notes = session.Query<Note>().ToList();
+                    transaction.Commit();
+
+                    return notes;
                 }
             }
         }

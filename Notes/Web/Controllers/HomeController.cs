@@ -1,5 +1,8 @@
-﻿using System.Web.Mvc;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
 using Services;
+using Web.Models.Home;
 
 namespace Web.Controllers
 {
@@ -14,7 +17,16 @@ namespace Web.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            IEnumerable<NoteDto> notesDtos = _notesService.GetAllNotes();
+
+            List<NoteViewModel> viewModels = notesDtos.Select(notesDto => new NoteViewModel
+            {
+                Id = notesDto.Id, 
+                Text = notesDto.Text
+            }).ToList();
+
+
+            return View(viewModels);
         }
     }
 }

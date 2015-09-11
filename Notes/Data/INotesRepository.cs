@@ -1,4 +1,5 @@
-﻿using Notes;
+﻿using System.Collections.Generic;
+using Notes;
 
 namespace Data
 {
@@ -7,5 +8,7 @@ namespace Data
         void AddNote(string text);
 
         Note GetNote(int id);
+
+        IEnumerable<Note> GetAllNotes();
     }
 }

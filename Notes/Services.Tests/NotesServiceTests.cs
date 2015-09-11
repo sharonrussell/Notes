@@ -1,4 +1,6 @@
-﻿using Data;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Data;
 using Moq;
 using Notes;
 using NUnit.Framework;
@@ -41,6 +43,25 @@ namespace Services.Tests
             Assert.That(note, Is.Not.Null);
             Assert.That(note.Text, Is.EqualTo("some text"));
             Assert.That(note.Id, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void When_GettingAllNotes_Should_GetFromRepository()
+        {
+            _notesRepository.Setup(o => o.GetAllNotes()).Returns(new List<Note>
+            {
+                new Note
+                {
+                    Id = 1,
+                    Text = "some text"
+                }
+            });
+
+            IEnumerable<NoteDto> notes = _notesService.GetAllNotes().ToList();
+
+            Assert.That(notes, Is.Not.Null);
+            Assert.That(notes.First().Text, Is.EqualTo("some text"));
+            Assert.That(notes.First().Id, Is.EqualTo(1));
         }
     }
 }

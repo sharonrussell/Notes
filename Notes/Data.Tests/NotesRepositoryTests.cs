@@ -1,4 +1,6 @@
-﻿using Data.NHibernate;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Data.NHibernate;
 using Notes;
 using NUnit.Framework;
 
@@ -62,6 +64,29 @@ namespace Data.Tests
 
             Assert.That(note, Is.Not.Null);
             Assert.That(note.Text, Is.EqualTo("test note"));
+        }
+
+        [Test]
+        public void When_GettingAllNotes_Should_GetFromDB()
+        {
+            using (var session = _nHibernateHelper.OpenSession())
+            {
+                using (var transaction = session.BeginTransaction())
+                {
+                    Note note = new Note
+                    {
+                        Text = "test note"
+                    };
+
+                    session.Save(note);
+                    transaction.Commit();
+                }
+            }
+
+            IEnumerable<Note> notes = _notesRepository.GetAllNotes().ToList();
+
+            Assert.That(notes, Is.Not.Null);
+            Assert.That(notes.First().Text, Is.EqualTo("test note"));
         }
     }
 }

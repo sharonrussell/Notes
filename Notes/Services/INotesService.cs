@@ -1,4 +1,5 @@
-﻿using System.ServiceModel;
+﻿using System.Collections.Generic;
+using System.ServiceModel;
 
 namespace Services
 {
@@ -10,5 +11,7 @@ namespace Services
 
         [OperationContract]
         NoteDto GetNote(int id);
+
+        IEnumerable<NoteDto> GetAllNotes();
     }
 }
