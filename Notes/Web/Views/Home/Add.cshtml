@@ -1,0 +1,18 @@
+﻿@model Web.Models.Home.NoteViewModel
+
+@{
+	string @title = "Add note";
+	ViewBag.Title = @title;
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@title</h2>
+
+@using (Html.BeginForm("Add", "Home", FormMethod.Post))
+{
+	<div>
+		@Html.TextAreaFor(m => m.Text)
+	</div>
+	
+	<input type="Submit"/>
+}

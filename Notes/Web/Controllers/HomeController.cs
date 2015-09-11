@@ -28,5 +28,21 @@ namespace Web.Controllers
 
             return View(viewModels);
         }
+
+        [HttpGet]
+        public ActionResult Add()
+        {
+            NoteViewModel model = new NoteViewModel();
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Add(NoteViewModel model)
+        {
+            _notesService.AddNote(model.Text);
+
+            return RedirectToAction("Index");
+        }
     }
 }
