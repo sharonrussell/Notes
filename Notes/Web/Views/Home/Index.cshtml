@@ -7,9 +7,14 @@
 }
 
 <h2>@title</h2>
-
 @foreach (var note in Model)
 {
-	<div>@note.Text</div>
+	<div class="note col-lg-1">
+		<div>
+			<i class="glyphicon glyphicon-remove note-options"></i>
+		</div>
+		<div>
+			@note.Text
+		</div>
+	</div>
 }
-

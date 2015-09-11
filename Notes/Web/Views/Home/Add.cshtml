@@ -10,9 +10,12 @@
 
 @using (Html.BeginForm("Add", "Home", FormMethod.Post))
 {
-	<div>
-		@Html.TextAreaFor(m => m.Text)
+	<div class="panel">
+		@Html.TextAreaFor(m => m.Text, new { @class = "note-editor" })
 	</div>
-	
-	<input type="Submit"/>
+	<div class="panel">
+		<button type="Submit">
+			<i class="glyphicon glyphicon-ok"></i>
+		</button>
+	</div>
 }

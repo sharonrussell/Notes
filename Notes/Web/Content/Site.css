@@ -21,4 +21,22 @@ input,
 select,
 textarea {
     max-width: 280px;
+	max-height: 280px;
+}
+
+.note {
+	padding: 2rem;
+	margin-right: 2rem;
+	margin-bottom: 2rem;
+}
+
+.note-options {
+	float: right;
+}
+
+.note , .note-editor {
+	background-color: aquamarine;
+	border: none;
+	width: 180px;
+	height: 180px;
 }
