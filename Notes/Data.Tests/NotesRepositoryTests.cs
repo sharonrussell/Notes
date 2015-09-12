@@ -27,7 +27,7 @@ namespace Data.Tests
             _notesRepository.AddNote("test note");
 
             Note note;
-            
+
             using (var session = _nHibernateHelper.OpenSession())
             {
                 using (var transaction = session.BeginTransaction())
@@ -39,54 +39,6 @@ namespace Data.Tests
 
             Assert.That(note, Is.Not.Null);
             Assert.That(note.Text, Is.EqualTo("test note"));
-        }
-
-        [Test]
-        public void When_GettingNote_Should_SaveToDB()
-        {
-            Note note;
-            
-            using (var session = _nHibernateHelper.OpenSession())
-            {
-                using (var transaction = session.BeginTransaction())
-                {
-                    note = new Note
-                    {
-                        Text = "test note"
-                    };
-
-                    session.Save(note);
-                    transaction.Commit();
-                }
-            }
-
-            note = _notesRepository.GetNote(note.Id);
-
-            Assert.That(note, Is.Not.Null);
-            Assert.That(note.Text, Is.EqualTo("test note"));
-        }
-
-        [Test]
-        public void When_GettingAllNotes_Should_GetFromDB()
-        {
-            using (var session = _nHibernateHelper.OpenSession())
-            {
-                using (var transaction = session.BeginTransaction())
-                {
-                    Note note = new Note
-                    {
-                        Text = "test note"
-                    };
-
-                    session.Save(note);
-                    transaction.Commit();
-                }
-            }
-
-            IEnumerable<Note> notes = _notesRepository.GetAllNotes().ToList();
-
-            Assert.That(notes, Is.Not.Null);
-            Assert.That(notes.First(o => o.Text.Equals("test note")).Text, Is.EqualTo("test note"));
         }
 
         [Test]
@@ -120,6 +72,54 @@ namespace Data.Tests
             }
 
             Assert.That(note, Is.Null);
+        }
+
+        [Test]
+        public void When_GettingAllNotes_Should_GetFromDB()
+        {
+            using (var session = _nHibernateHelper.OpenSession())
+            {
+                using (var transaction = session.BeginTransaction())
+                {
+                    var note = new Note
+                    {
+                        Text = "test note"
+                    };
+
+                    session.Save(note);
+                    transaction.Commit();
+                }
+            }
+
+            IEnumerable<Note> notes = _notesRepository.GetAllNotes().ToList();
+
+            Assert.That(notes, Is.Not.Null);
+            Assert.That(notes.First(o => o.Text.Equals("test note")).Text, Is.EqualTo("test note"));
+        }
+
+        [Test]
+        public void When_GettingNote_Should_SaveToDB()
+        {
+            Note note;
+
+            using (var session = _nHibernateHelper.OpenSession())
+            {
+                using (var transaction = session.BeginTransaction())
+                {
+                    note = new Note
+                    {
+                        Text = "test note"
+                    };
+
+                    session.Save(note);
+                    transaction.Commit();
+                }
+            }
+
+            note = _notesRepository.GetNote(note.Id);
+
+            Assert.That(note, Is.Not.Null);
+            Assert.That(note.Text, Is.EqualTo("test note"));
         }
     }
 }
