@@ -13,5 +13,6 @@ namespace Services
         NoteDto GetNote(int id);
 
         IEnumerable<NoteDto> GetAllNotes();
+        void DeleteNote(int id);
     }
 }

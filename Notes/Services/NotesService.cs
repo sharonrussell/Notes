@@ -47,5 +47,10 @@ namespace Services
 
             return noteDtos;
         }
+
+        public void DeleteNote(int id)
+        {
+            _notesRepository.DeleteNote(id);
+        }
     }
 }

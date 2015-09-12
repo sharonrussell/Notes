@@ -56,5 +56,19 @@ namespace Data
                 }
             }
         }
+
+        public void DeleteNote(int id)
+        {
+            Note note = GetNote(id);
+
+            using (var session = _nHibernateHelper.OpenSession())
+            {
+                using (var transaction = session.BeginTransaction())
+                {
+                    session.Delete(note);
+                    transaction.Commit();
+                }
+            }
+        }
     }
 }

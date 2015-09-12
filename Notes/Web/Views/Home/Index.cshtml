@@ -11,7 +11,9 @@
 {
 	<div class="note col-lg-1">
 		<div>
-			<i class="glyphicon glyphicon-remove note-options"></i>
+			<a href="@Url.Action("Delete", "Home", new {id = note.Id})">
+				<i class="glyphicon glyphicon-remove note-options"></i>
+			</a>
 		</div>
 		<div>
 			@note.Text

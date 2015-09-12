@@ -63,5 +63,13 @@ namespace Services.Tests
             Assert.That(notes.First().Text, Is.EqualTo("some text"));
             Assert.That(notes.First().Id, Is.EqualTo(1));
         }
+
+        [Test]
+        public void When_DeletingNote_Should_DeleteFromRepository()
+        {
+            _notesService.DeleteNote(1);
+
+            _notesRepository.Verify(o => o.DeleteNote(1), Times.Once());
+        }
     }
 }

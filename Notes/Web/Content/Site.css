@@ -32,11 +32,16 @@ textarea {
 
 .note-options {
 	float: right;
+	color: darkorchid;
 }
 
 .note , .note-editor {
-	background-color: aquamarine;
+	background-color: lavender;
 	border: none;
 	width: 180px;
 	height: 180px;
+}
+
+.note-add {
+	margin-top: 1rem;
 }

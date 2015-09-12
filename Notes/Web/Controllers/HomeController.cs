@@ -44,5 +44,12 @@ namespace Web.Controllers
 
             return RedirectToAction("Index");
         }
+
+        public ActionResult Delete(int id)
+        {
+            _notesService.DeleteNote(id);
+
+            return RedirectToAction("Index");
+        }
     }
 }

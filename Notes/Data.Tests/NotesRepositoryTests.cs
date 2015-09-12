@@ -86,7 +86,40 @@ namespace Data.Tests
             IEnumerable<Note> notes = _notesRepository.GetAllNotes().ToList();
 
             Assert.That(notes, Is.Not.Null);
-            Assert.That(notes.First().Text, Is.EqualTo("test note"));
+            Assert.That(notes.First(o => o.Text.Equals("test note")).Text, Is.EqualTo("test note"));
+        }
+
+        [Test]
+        public void When_DeletingNote_Should_DeleteFromDB()
+        {
+            Note note;
+
+            using (var session = _nHibernateHelper.OpenSession())
+            {
+                using (var transaction = session.BeginTransaction())
+                {
+                    note = new Note
+                    {
+                        Text = "some text"
+                    };
+
+                    session.Save(note);
+                    transaction.Commit();
+                }
+            }
+
+            _notesRepository.DeleteNote(1);
+
+            using (var session = _nHibernateHelper.OpenSession())
+            {
+                using (var transaction = session.BeginTransaction())
+                {
+                    note = session.Get<Note>(1);
+                    transaction.Commit();
+                }
+            }
+
+            Assert.That(note, Is.Null);
         }
     }
 }

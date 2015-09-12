@@ -10,5 +10,7 @@ namespace Data
         Note GetNote(int id);
 
         IEnumerable<Note> GetAllNotes();
+
+        void DeleteNote(int id);
     }
 }
