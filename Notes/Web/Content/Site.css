@@ -25,7 +25,6 @@ textarea {
 }
 
 .note {
-	padding: 2rem;
 	margin-right: 2rem;
 	margin-bottom: 2rem;
 }
@@ -40,6 +39,7 @@ textarea {
 	border: none;
 	width: 180px;
 	height: 180px;
+	padding: 2rem;
 }
 
 .note-add {
