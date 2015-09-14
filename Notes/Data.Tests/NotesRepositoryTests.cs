@@ -121,5 +121,39 @@ namespace Data.Tests
             Assert.That(note, Is.Not.Null);
             Assert.That(note.Text, Is.EqualTo("test note"));
         }
+
+        [Test]
+        public void When_EditingNote_Should_EditNoteInDB()
+        {
+            Note note;
+
+            using (var session = _nHibernateHelper.OpenSession())
+            {
+                using (var transaction = session.BeginTransaction())
+                {
+                    note = new Note
+                    {
+                        Text = "test note",
+                        Id = 1
+                    };
+
+                    session.Save(note);
+                    transaction.Commit();
+                }
+            }
+
+            _notesRepository.EditNote(note.Id, "new text");
+
+            using (var session = _nHibernateHelper.OpenSession())
+            {
+                using (var transaction = session.BeginTransaction())
+                {
+                    note = session.Get<Note>(note.Id);
+                    transaction.Commit();
+                }
+            }
+
+            Assert.That(note.Text, Is.EqualTo("new text"));
+        }
     }
 }

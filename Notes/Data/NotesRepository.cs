@@ -59,13 +59,28 @@ namespace Data
 
         public void DeleteNote(int id)
         {
-            Note note = GetNote(id);
+            var note = GetNote(id);
 
             using (var session = _nHibernateHelper.OpenSession())
             {
                 using (var transaction = session.BeginTransaction())
                 {
                     session.Delete(note);
+                    transaction.Commit();
+                }
+            }
+        }
+
+        public void EditNote(int id, string text)
+        {
+            var note = GetNote(id);
+            note.Text = text;
+
+            using (var session = _nHibernateHelper.OpenSession())
+            {
+                using (var transaction = session.BeginTransaction())
+                {
+                    session.Update(note);
                     transaction.Commit();
                 }
             }

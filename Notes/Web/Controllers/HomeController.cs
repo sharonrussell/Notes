@@ -51,5 +51,33 @@ namespace Web.Controllers
 
             return RedirectToAction("Index");
         }
+
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            var noteDto = _notesService.GetNote(id);
+
+            var model = new NoteViewModel
+            {
+                Text = noteDto.Text,
+                Id = noteDto.Id
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(NoteViewModel model)
+        {
+            NoteDto noteDto = new NoteDto
+            {
+                Id = model.Id,
+                Text = model.Text
+            };
+
+            _notesService.EditNote(noteDto);
+
+            return RedirectToAction("Index");
+        }
     }
 }

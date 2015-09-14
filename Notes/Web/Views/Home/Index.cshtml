@@ -16,6 +16,11 @@
 			</a>
 		</div>
 		<div>
+			<a href="@Url.Action("Edit", "Home", new {id = note.Id})">
+				<i class="glyphicon glyphicon-pencil note-options"></i>
+			</a>
+		</div>
+		<div>
 			@note.Text
 		</div>
 	</div>

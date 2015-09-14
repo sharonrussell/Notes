@@ -52,5 +52,10 @@ namespace Services
         {
             _notesRepository.DeleteNote(id);
         }
+
+        public void EditNote(NoteDto noteDto)
+        {
+            _notesRepository.EditNote(noteDto.Id, noteDto.Text);
+        }
     }
 }

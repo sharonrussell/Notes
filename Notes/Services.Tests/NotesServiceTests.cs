@@ -71,5 +71,20 @@ namespace Services.Tests
 
             _notesRepository.Verify(o => o.DeleteNote(1), Times.Once());
         }
+
+        [Test]
+        public void When_EditingNote_Should_EditNoteInRepository()
+        {
+            _notesService.EditNote(new NoteDto {Id = 1, Text = "some text"});
+
+            var note = new Note
+            {
+               Text = "some text",
+               Id = 1
+            };
+
+            _notesRepository.Setup(o => o.GetNote(note.Id)).Returns(note);
+            _notesRepository.Verify(o => o.EditNote(note.Id, note.Text), Times.Once);
+        }
     }
 }

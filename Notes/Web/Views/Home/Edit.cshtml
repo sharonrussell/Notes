@@ -1,0 +1,21 @@
+﻿@model Web.Models.Home.NoteViewModel
+
+@{
+	string @title = "Edit note";
+	ViewBag.Title = @title;
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@title</h2>
+
+@using (Html.BeginForm("Edit", "Home", new { id = Model.Id }))
+{
+	<div>
+		@Html.TextAreaFor(m => m.Text, new { @class = "note-editor" })
+	</div>
+	<div class="note-add">
+		<button type="Submit">
+			<i class="glyphicon glyphicon-ok"></i>
+		</button>
+	</div>
+}
