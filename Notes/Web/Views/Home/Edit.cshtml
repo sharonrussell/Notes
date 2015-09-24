@@ -10,12 +10,5 @@
 
 @using (Html.BeginForm("Edit", "Home", new { id = Model.Id }))
 {
-	<div>
-		@Html.TextAreaFor(m => m.Text, new { @class = "note-editor" })
-	</div>
-	<div class="note-add">
-		<button type="Submit">
-			<i class="glyphicon glyphicon-ok"></i>
-		</button>
-	</div>
+	@Html.Partial("_AddOrEdit", Model)
 }

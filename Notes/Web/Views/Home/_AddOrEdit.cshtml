@@ -1,0 +1,10 @@
+﻿@model Web.Models.Home.NoteViewModel
+
+<div>
+	@Html.TextAreaFor(m => m.Text, new { @class = "note-editor" })
+</div>
+<div class="note-add">
+	<button type="Submit">
+		<i class="glyphicon glyphicon-ok"></i>
+	</button>
+</div>
